@@ -8,6 +8,22 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-  <app-root></app-root>
+  <header class="topbar">
+    <a routerLink="/" class="brand">Ruleta</a>
+
+    <nav>
+      @if ( !auth.isLoggedIn()) {
+        <a routerLink="/login">Login</a>
+        <a routerLink="/register">Registro</a>
+      } @else {
+        <a routerLink="/dashboard">Dashboard</a>
+        <button class="link" (click)="logout()">Salir</button>
+      }
+    </nav>
+  </header>
+  <main class="container">
+    <app-root></app-root>
+  </main>
+  
 </body>
 </html>
