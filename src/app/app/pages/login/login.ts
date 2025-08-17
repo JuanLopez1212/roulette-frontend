@@ -1,30 +1,40 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Auth } from '../../core/services/auth';
 
+
 @Component({
-  standalone: true,
   selector: 'app-login',
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  templateUrl: './login.html',
+  imports: [ ReactiveFormsModule ],
+  styleUrls: ['./login.css']
 })
 export class LoginComponent {
-  error = '';
-  form = this.fb.nonNullable.group({
-    email: [''],
-    password: [''],
-  });
 
-  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {}
+  loginForm: FormGroup;
+  errorMessage: string = '';
 
-  submit() {
-    this.error = '';
-    this.auth.login(this.form.getRawValue()).subscribe({
-      next: () => this.router.navigate(['/dashboard']),
-      error: (e) => this.error = e?.error?.message ?? 'Error al iniciar sesión',
+  constructor(private fb: FormBuilder, private auth: Auth ) {
+
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
     });
+  }
+
+  onSubmit() {
+    if (this.loginForm.valid) {
+      const { email, password } = this.loginForm.value;
+
+      // Forzamos los tipos a string para que coincidan con lo que espera el servicio
+      this.auth.login({ email: email as string, password: password as string }).subscribe({
+        next: () => {
+          console.log('Login exitoso');
+        },
+        error: (err) => {
+          this.errorMessage = err.error?.message || 'Error al iniciar sesión';
+        }
+      });
+    }
   }
 }
