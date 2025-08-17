@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
+import { Auth } from '../../core/services/auth';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [],
+  imports: [ RouterOutlet, RouterLink ],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css'
 })
 export class Dashboard {
-
+  constructor( public auth: Auth) {}
 }

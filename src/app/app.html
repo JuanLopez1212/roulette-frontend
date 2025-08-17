@@ -9,7 +9,7 @@
         <a routerLink="/register">Registro</a>
       } @else {
         <a routerLink="/dashboard">Dashboard</a>
-        <button class="link" (click)="logout()">Salir</button>
+        <button class="link" (click)="logout()" routerLink = "/">Salir</button>
       }
   </header>
   <main class="container">

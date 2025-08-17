@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Auth } from '../../core/services/auth';
+import { RouterLink } from '@angular/router';
+
 
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.html',
-  imports: [ ReactiveFormsModule ],
+  imports: [ReactiveFormsModule, RouterLink ],
   styleUrls: ['./login.css']
 })
 export class LoginComponent {
@@ -36,5 +38,9 @@ export class LoginComponent {
         }
       });
     }
+  }
+
+  ngOnDestroy() {
+    
   }
 }

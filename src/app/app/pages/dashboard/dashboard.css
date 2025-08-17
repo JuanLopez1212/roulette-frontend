@@ -1,0 +1,22 @@
+.dashnav {
+    display: flex;
+    gap: 12px;
+    padding: 8px;
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    list-style: none;
+}
+
+.dasnav a {
+    color: #ddd;
+    text-decoration: none;
+}
+
+.sep {
+    flex: 0 0 1px;
+    background: #333;
+    margin: 0 8px;
+}

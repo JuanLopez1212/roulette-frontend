@@ -1,1 +1,20 @@
-<p>bet-list works!</p>
+<h3>Mis apuestas</h3>
+
+@if( loading ) { <p>Cargando...</p> }
+@else {
+    @if( error ) { <p class="error">{{ error }}</p> }
+    @if( bets.length === 0 ) { <p>No has realizado apuestas</p> }
+}
+
+<ul class="list">
+    @for( b of bets; track b._id ) {
+        <li>
+            <div>
+                <strong>{{ b.game?.gameNumber ?? b.game }}</strong> -
+                {{ b.result }} - payout: {{ b.payout }}
+            </div>
+            <a [routerLink] = "[ '/dashboard/bets', b._id ]">Ver</a>
+        </li>
+    }
+</ul>
+

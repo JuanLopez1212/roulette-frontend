@@ -1,1 +1,15 @@
-<p>dashboard works!</p>
+<nav class="dashnav">
+    <a routerLink="/dashboard">Mis apuestas</a>
+    <a routerLink="/dashboard/bets/new">Nueva apuesta</a>
+    <a routerLink="/dashboard/rounds">Rondas</a>
+    <a routerLink="/dashboard/profile">Perfil</a>
+    <a routerLink="/dashboard/balance/add">Agregar saldo</a>
+
+    @if (auth.getUserRole() === 'admin') {
+        <span class="sep"></span>
+        <a routerLink="/dashboard/rounds/new">Crear ronda</a>
+        <a routerLink="/dashboard/admin/users">Usuarios</a>
+    }
+</nav>
+
+<router-outlet />
