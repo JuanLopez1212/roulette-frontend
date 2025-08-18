@@ -1,1 +1,18 @@
-<p>add-balance works!</p>
+<h3>Añadir Balance</h3>
+
+<form [formGroup]="form" (ngSubmit)="addBalance()" class="balance-form">
+  <div class="form-group">
+    <label for="amount">Monto a añadir:</label>
+    <input id="amount" type="number" formControlName="amount" placeholder="Ej: 5000" />
+  </div>
+
+  <button type="submit" [disabled]="form.invalid">Añadir</button>
+</form>
+
+@if (success) {
+  <p class="success">{{ success }}</p>
+}
+@if (error) {
+  <p class="error">{{ error }}</p>
+}
+

@@ -14,9 +14,16 @@ export class UserService {
 
   deposit(amount: number) {
     return this.http.patch<{ message:string; balance:number }>(
-      `${environment.apiUrl}/users/deposit`, { amount }
+      `${environment.apiUrl}/deposit`, { amount }
     );
   }
+
+  adjustBalance(userId: string, amount: number) {
+  return this.http.patch<{ message: string; balance: number }>(
+    `${environment.apiUrl}/${userId}/adjust-balance`, 
+    { amount }
+  );
+}
 
   // Admin
   listUsers() {
