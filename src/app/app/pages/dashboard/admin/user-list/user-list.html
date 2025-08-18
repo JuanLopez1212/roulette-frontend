@@ -1,1 +1,13 @@
-<p>user-list works!</p>
+<h3>Usuarios</h3>
+@if( error ) { <p class="error">{{ error }}</p> }
+
+<ul class="list">
+    @for( u of users; track u._id ) {
+        <li>
+            <div>
+                <b>{{ u.username }}</b> - {{ u.email }} - saldo: {{ u.balance }}
+            </div>
+            <a [routerLink] = "['/dashboard/admin/users']">Ver</a>
+        </li>
+    }
+</ul>
