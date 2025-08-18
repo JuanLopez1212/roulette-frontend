@@ -1,1 +1,41 @@
-<p>bet-form works!</p>
+<div class="bet-form-container" [formGroup]="form">
+    <h2>Realizar Apuesta</h2>
+
+    @if (error) {
+    <p class="error">{{ error }}</p>
+    }
+    @if (msg) {
+    <p class="success">{{ msg }}</p>
+    }
+
+    <div class="bets-list">
+        <div class="bet-item">
+            <label for="rouletteId">Selecciona una ruleta:</label>
+            <select id="rouletteId" formControlName="rouletteId">
+                <option value="">-- Selecciona --</option>
+                @for (r of rounds; track r.id) {
+                <option [value]="r.id">{{ r.name }}</option>
+                }
+            </select>
+        </div>
+
+        <div class="bet-item">
+            <label for="tipoApuesta">Tipo de Apuesta:</label>
+            <select id="tipoApuesta" formControlName="tipoApuesta">
+                <option value="numero">Número</option>
+                <option value="color">Color</option>
+            </select>
+        </div>
+
+        <div class="bet-item">
+            <label for="valor">Valor:</label>
+            <input id="valor" type="text" formControlName="valor" placeholder="Ej: 7 o Rojo" />
+        </div>
+
+        <div class="bet-item">
+            <label for="monto">Monto:</label>
+            <input id="monto" type="number" formControlName="monto" placeholder="Ej: 1000" />
+        </div>
+    </div>
+    <button class="submit-btn" (click)="submit()">Enviar Apuesta</button>
+</div>

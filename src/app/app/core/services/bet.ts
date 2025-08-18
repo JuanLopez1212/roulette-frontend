@@ -7,7 +7,6 @@ export class BetService {
   constructor(private http: HttpClient) {}
 
   placeBet(rouletteId: string, payload: { tipoApuesta:'numero'|'color'; valor:number|string; monto:number }) {
-    // backend POST /api/bets/:rouletteId/place
     return this.http.post(`${environment.apiUrl}/bets/${rouletteId}/place`, payload);
   }
 
