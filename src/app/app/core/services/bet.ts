@@ -6,8 +6,16 @@ import { environment } from '../../environments/environment';
 export class BetService {
   constructor(private http: HttpClient) {}
 
-  placeBet(rouletteId: string, payload: { tipoApuesta:'numero'|'color'; valor:number|string; monto:number }) {
-    return this.http.post(`${environment.apiUrl}/bets/${rouletteId}/bet`, payload);
+  placeBet(rouletteId: string, payload: { type:'numero'|'color'; value:number|string; amount:number }) {
+    return this.http.post(`${environment.apiUrl}/${rouletteId}/bet`, {
+      bets: [
+        {
+          type: payload.type,
+          value: payload.value,
+          amount: payload.amount
+        }
+      ]
+    });
   }
 
   myBets() {

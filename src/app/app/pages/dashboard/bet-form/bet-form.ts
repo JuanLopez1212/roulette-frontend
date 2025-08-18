@@ -27,9 +27,9 @@ export class BetForm {
   ngOnInit(): void {
     this.form = this.fb.group({
       rouletteId: ['', Validators.required],
-      tipoApuesta: ['numero', Validators.required],
-      valor: ['', Validators.required],
-      monto: [0, [Validators.required, Validators.min(1)]],
+      type: ['numero', Validators.required],
+      value: ['', Validators.required],
+      amount: [0, [Validators.required, Validators.min(1)]],
     });
 
     this.gameSvc.list().subscribe({
@@ -49,11 +49,13 @@ export class BetForm {
 
     const v = this.form.value;
 
-    this.betSvc.placeBet(v.rouletteId, {
-      tipoApuesta: v.tipoApuesta,
-      valor: v.valor,
-      monto: v.monto
-    }).subscribe({
+    const payload = {
+      type: v.type,
+      value: v.type === 'numero' ? Number( v.value ) : v.value,
+      amount: v.amount
+    }
+
+    this.betSvc.placeBet(v.rouletteId, payload).subscribe({
       next: () => this.msg = '✅ Apuesta realizada correctamente',
       error: (e) => this.error = e?.error?.message ?? '❌ Error al realizar apuesta'
     });

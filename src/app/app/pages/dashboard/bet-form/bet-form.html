@@ -13,28 +13,36 @@
             <label for="rouletteId">Selecciona una ruleta:</label>
             <select id="rouletteId" formControlName="rouletteId">
                 <option value="">-- Selecciona --</option>
-                @for (r of rounds; track r.id) {
-                <option [value]="r.id">{{ r.name }}</option>
+                @for (r of rounds; track r._id) {
+                <option [value]="r._id"> Ruleta #{{ r.gameNumber }} ({{ r.status }})</option>
                 }
             </select>
         </div>
 
-        <div class="bet-item">
-            <label for="tipoApuesta">Tipo de Apuesta:</label>
-            <select id="tipoApuesta" formControlName="tipoApuesta">
-                <option value="numero">Número</option>
-                <option value="color">Color</option>
+    <div class="bet-item">
+        <label for="type">Tipo de Apuesta:</label>
+        <select id="type" formControlName="type">
+            <option value="numero">Número</option>
+            <option value="color">Color</option>
+        </select>
+    </div>
+
+    <div class="bet-item">
+        <label for="value">Valor:</label>
+
+        @if (form.get('type')?.value === 'numero') {
+            <input id="value" type="number" formControlName="value" placeholder="Ej: 7" />
+        } @else {
+            <select id="value" formControlName="value">
+                <option value="rojo">Rojo</option>
+                <option value="negro">Negro</option>
             </select>
-        </div>
+            }
+    </div>
 
         <div class="bet-item">
-            <label for="valor">Valor:</label>
-            <input id="valor" type="text" formControlName="valor" placeholder="Ej: 7 o Rojo" />
-        </div>
-
-        <div class="bet-item">
-            <label for="monto">Monto:</label>
-            <input id="monto" type="number" formControlName="monto" placeholder="Ej: 1000" />
+            <label for="amount">Monto:</label>
+            <input id="amount" type="number" formControlName="amount" placeholder="Ej: 1000" />
         </div>
     </div>
     <button class="submit-btn" (click)="submit()">Enviar Apuesta</button>
