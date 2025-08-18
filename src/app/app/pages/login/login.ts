@@ -28,7 +28,6 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
 
-      // Forzamos los tipos a string para que coincidan con lo que espera el servicio
       this.auth.login({ email: email as string, password: password as string }).subscribe({
         next: () => {
           console.log('Login exitoso');

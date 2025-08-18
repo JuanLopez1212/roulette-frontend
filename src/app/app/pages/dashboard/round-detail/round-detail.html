@@ -1,1 +1,20 @@
-<p>round-detail works!</p>
+<h3>Detalle de ronda</h3>
+
+@if (error) {
+    <p class="error">{{ error }}</p>
+}
+
+@if (round) {
+    <p><b>#{{ round.gameNumber }}</b> — estado: {{ round.status }}</p>
+
+@if (round.winningNumber !== undefined) {
+    <p>Ganador: {{ round.winningNumber }} ({{ round.winningColor }})</p>
+}
+
+@if (auth.getUserRole() === 'admin') {
+    <div class="admin-actions">
+        <button (click)="openRound(round._id)">Abrir</button>
+        <button (click)="closeRound(round._id)">Cerrar/Finalizar</button>
+    </div>
+}
+}

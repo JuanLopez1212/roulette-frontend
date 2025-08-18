@@ -1,1 +1,20 @@
-<p>profile works!</p>
+<h3>Perfil</h3>
+
+@if (error) { <p class="error">{{ error }}</p> }
+
+@if (data) {
+    <p><b>Usuario:</b> {{ data.username }}</p>
+    <p><b>Email:</b> {{ data.email }}</p>
+    <p><b>Saldo:</b> {{ data.balance }}</p>
+
+<h4>Depósitos</h4>
+    @if (!data.totalDeposited?.length) {
+        <p>Sin depósitos.</p>
+    } @else {
+        <ul>
+            @for (d of data.totalDeposited; track d.date) {
+                <li>{{ d.amount }} — {{ d.date | date:'short' }}</li>
+            }
+        </ul>
+    }
+}

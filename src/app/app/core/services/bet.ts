@@ -7,11 +7,11 @@ export class BetService {
   constructor(private http: HttpClient) {}
 
   placeBet(rouletteId: string, payload: { tipoApuesta:'numero'|'color'; valor:number|string; monto:number }) {
-    return this.http.post(`${environment.apiUrl}/bets/${rouletteId}/place`, payload);
+    return this.http.post(`${environment.apiUrl}/bets/${rouletteId}/bet`, payload);
   }
 
   myBets() {
-    return this.http.get<any[]>(`${environment.apiUrl}/bets/user`);
+    return this.http.get<any[]>(`${environment.apiUrl}/bet/user`);
   }
 
   getBet(id: string) {

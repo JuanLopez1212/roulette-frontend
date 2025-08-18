@@ -7,18 +7,18 @@ export class GameService {
   constructor(private http: HttpClient) {}
 
   list() {
-    return this.http.get<any[]>(`${environment.apiUrl}/roulette`);
+    return this.http.get<any[]>(`${environment.apiUrl}/games`);
   }
   detail(id: string) {
-    return this.http.get<any>(`${environment.apiUrl}/roulette/${id}`);
+    return this.http.get<any>(`${environment.apiUrl}/games/${id}`);
   }
   create(nombre: string) {
-    return this.http.post(`${environment.apiUrl}/roulette/create`, { nombre });
+    return this.http.post(`${environment.apiUrl}/games/create`, { nombre });
   }
   open(id: string) {
-    return this.http.patch(`${environment.apiUrl}/roulette/${id}/open`, {});
+    return this.http.patch(`${environment.apiUrl}/games/${id}/open`, {});
   }
   close(id: string) {
-    return this.http.patch(`${environment.apiUrl}/roulette/${id}/close`, {});
+    return this.http.patch(`${environment.apiUrl}/games/${id}/close`, {});
   }
 }

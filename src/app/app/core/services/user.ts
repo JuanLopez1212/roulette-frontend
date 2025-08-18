@@ -8,7 +8,7 @@ export class UserService {
 
   profile() {
     return this.http.get<{ username: string; email: string; balance: number; totalDeposited: {amount: number; date: string}[] }>(
-      `${environment.apiUrl}/users/profile`
+      `${environment.apiUrl}/profile`
     );
   }
 

@@ -1,1 +1,24 @@
-<p>round-list works!</p>
+<h3>Rondas</h3>
+
+@if (error) { <p class="error">{{ error }}</p> }
+
+<ul class="list">
+    @for (r of rounds; track r._id) {
+    <li>
+        <div>
+            <strong>#{{ r.gameNumber }}</strong>
+            — estado: <b>{{ r.status }}</b>
+            @if (r.winningNumber !== undefined) {
+            — ganador: {{ r.winningNumber }} ({{ r.winningColor }})
+            }
+        </div>
+        <div class="actions">
+            <a [routerLink]="['/dashboard/rounds', r._id]">Ver</a>
+            @if (auth.getUserRole() === 'admin') {
+            <a [routerLink]="['/dashboard/users', r._id, 'spin']">Lanzar</a>
+            }
+        </div>
+    </li>
+    }
+</ul>
+

@@ -1,1 +1,8 @@
-<p>round-result works!</p>
+<h3>Resultado de la ronda</h3>
+
+@if (error) { <p class="error">{{ error }}</p> }
+
+@if (round) {
+    <p>Ronda #{{ round.gameNumber }}</p>
+    <p>Resultado: {{ round.winningNumber }} ({{ round.winningColor }})</p>
+}

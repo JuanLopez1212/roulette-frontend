@@ -1,1 +1,8 @@
-<p>bet-detail works!</p>
+<h3>Detalle de apuesta</h3>
+
+@if (error) { <p class="error">{{ error }}</p> }
+
+@if (bet) {
+    <pre>{{ bet | json }}</pre>
+}
+
